@@ -1,0 +1,10 @@
+name: proxmox_installer
+
+services:
+  pve:
+    image: proxmox_installer:latest
+    build:
+       dockerfile: Dockerfile
+    volumes:
+      - $HOME/Downloads:/tmp/downloads:z
+      - $HOME/proj/sysadmin_scripts/optiplex/proxmox:/tmp/proxmox:z

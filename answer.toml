@@ -1,0 +1,33 @@
+[global]
+keyboard = "en-us"
+country = "us"
+fqdn = "optiplex.local"
+mailto = "bbishop@fastmail.com"
+timezone = "America/Chicago"
+root-ssh-keys = [
+"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0IgrojPSF51Xie0dW4TcPc1YK58EVNsPPXVUFjFqTB Bryan Bishop Oct 2025 Debian desktop - optiplex",
+"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmTjdDjVvJ7wul0NSdc6UzqC8NLKZ0nv1J6Z7BU94A7 Bryan Bishop Oct 2025 Ubuntu laptop - darkstar"
+]
+root-password-hashed = "$y$j9T$2W5kserk6Lhrvw6hfOWOT/$esiBd6d/GQVOFWcdavwYoO5sSJvIA6g.MvtvhD2WQB1"
+
+[network]
+source = "from-dhcp"
+
+[disk-setup]
+filesystem = "ext4"
+lvm.hdsize = 20
+lvm.swapsize = 4
+# lvm.maxroot = 15
+lvm.maxvz = 0
+# lvm.minfree = 0
+disk-list = ["nvme0n1"]
+
+[first-boot]
+source = "from-iso"
+
+# When using from-iso, the executable must be specified when preparing the ISO using
+# proxmox-auto-install-assistant prepare-iso --on-first-boot path/to/file.sh
+
+# source = from-url
+# url = http://192.168.0.10:8001
+
