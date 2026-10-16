@@ -1,14 +1,13 @@
 [global]
 keyboard = "en-us"
 country = "us"
-fqdn = "optiplex.local"
+fqdn = "optiplex.internal"
 mailto = "bbishop@fastmail.com"
 timezone = "America/Chicago"
 root-ssh-keys = [
-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0IgrojPSF51Xie0dW4TcPc1YK58EVNsPPXVUFjFqTB Bryan Bishop Oct 2025 Debian desktop - optiplex",
-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmTjdDjVvJ7wul0NSdc6UzqC8NLKZ0nv1J6Z7BU94A7 Bryan Bishop Oct 2025 Ubuntu laptop - darkstar"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILi1okhO4blKf8zlxJORtFop64FZXtfD9ja3GHqsWObY Bryan Bishop Nov 2025 laptop - darkstar"
 ]
-root-password-hashed = "$y$j9T$2W5kserk6Lhrvw6hfOWOT/$esiBd6d/GQVOFWcdavwYoO5sSJvIA6g.MvtvhD2WQB1"
+root-password-hashed = "$6$fZFpy8hKVPzDdd5x$fe2j6RoyMrSUpW9tQlXtYSLVJrrKTDDpGJAl2ASdxVFU3nOHcg1txh8EKOcWDIaqdYvRBnXRmT1g2aAqafyaL."
 
 [network]
 source = "from-dhcp"
@@ -30,4 +29,3 @@ source = "from-iso"
 
 # source = from-url
 # url = http://192.168.0.10:8001
-
