@@ -1,3 +1,5 @@
+# https://pve.proxmox.com/wiki/Automated_Installation#Answer_File_Format_2
+
 [global]
 keyboard = "en-us"
 country = "us"
@@ -26,6 +28,3 @@ source = "from-iso"
 
 # When using from-iso, the executable must be specified when preparing the ISO using
 # proxmox-auto-install-assistant prepare-iso --on-first-boot path/to/file.sh
-
-# source = from-url
-# url = http://192.168.0.10:8001
