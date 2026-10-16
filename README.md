@@ -10,7 +10,7 @@ sudo proxmox-auto-install-assistant prepare-iso --fetch-from iso --answer-file $
 From a non-debian machine:
 
 ```
-  podman compose run pve
+  podman compose run --build pve <path_to_answer.toml> <path_to_installer_file.iso>
 ```
 
 See the docker-compose.yml for bind mount locations.
