@@ -18,6 +18,7 @@ For example:
   podman compose run --build pve /tmp/proxmox/answer.toml /tmp/downloads/proxmox-ve_9.2-1.iso
 ```
 
+If you see permission denied errors on producing the final auto.iso, then there is a prexisting auto.iso file in the way, remove it.
 
 ## Verifying the custom ISO by extracting out the answer.toml:
 
@@ -27,7 +28,7 @@ For example:
 
 For example:
 ```
-podman compose run --build pve --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso /tmp/downloads/proxmox-ve_9.2-1.iso
+ podman compose run --build --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso /tmp/downloads/proxmox-ve_9.2-1.iso"
 ```
 
 See the docker-compose.yml for bind mount locations.
