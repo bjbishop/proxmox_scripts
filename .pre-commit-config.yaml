@@ -1,0 +1,20 @@
+---
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: local
+    hooks:
+      - id: validate_answer_file
+        name: validate proxmox answer.toml
+        language: system
+        entry: podman-compose run --rm --entrypoint /bin/bash pve -c 'proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml'
+        files: ^answer\.toml$
+        pass_filenames: false
+-   repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1-1
+    hooks:
+      -   id: shellcheck
