@@ -32,3 +32,13 @@ For example:
 ```
 
 See the docker-compose.yml for bind mount locations.
+
+## My actual Dell Opitplex hardware:
+
+These are the ID_SERIAL_SHORT values:
+
+- nvme0n1 0036580001504 by-id "nvme-NE-512_2280_0036580001504"
+- sda 9VP43HG6 by-id "ata-ST31000528AS_9VP43HG6"
+- sdb 6YD1NE4T by-id "ata-ST2000DL003-9VT166_6YD1NE4T"
+- sdc 6VPDB7XZ by-id "ata-ST31000524AS_6VPDB7XZ"
+- sdd Z3MCS0QUS by-id "ata-TOSHIBA_MQ01ABF050_Z3MCS0QUS"

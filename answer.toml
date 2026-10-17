@@ -12,7 +12,10 @@ root-ssh-keys = [
 root-password-hashed = "$6$fZFpy8hKVPzDdd5x$fe2j6RoyMrSUpW9tQlXtYSLVJrrKTDDpGJAl2ASdxVFU3nOHcg1txh8EKOcWDIaqdYvRBnXRmT1g2aAqafyaL."
 
 [network]
-source = "from-dhcp"
+source = "from-answer"
+cidr = "192.168.0.10/24"
+dns = "8.8.8.8"
+gateway = "192.168.0.1"
 
 # This is to just format the main system volume for where proxmox is going to live, not the other attached disks.
 [disk-setup]
@@ -20,20 +23,12 @@ filesystem = "ext4"
 lvm.swapsize = 12
 
 # qemu disks
-filter.ID_PATH = "pci-0000_04_00_0"
+# filter.ID_PATH = "pci-0000_04_00_0"
 # or
 # disk-list = ["/dev/vda"]
 #
 # for real hardware
-# filter.ID_SERIAL_SHORT = "0036580001504"
+filter.ID_SERIAL_SHORT = "0036580001504"
 
 [first-boot]
 source = "from-iso"
-
-# Actual Optiplex hardware disk layout:
-# nvme0n1 serial: 0036580001504 by-id "nvme-NE-512_2280_0036580001504"
-# sda 9VP43HG6 by-id "ata-ST31000528AS_9VP43HG6"
-# sdb 6YD1NE4T by-id "ata-ST2000DL003-9VT166_6YD1NE4T"
-# sdc 6VPDB7XZ by-id "ata-ST31000524AS_6VPDB7XZ"
-# sdd Z3MCS0QUS "ata-TOSHIBA_MQ01ABF050_Z3MCS0QUS"
-#
