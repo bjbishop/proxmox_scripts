@@ -1,12 +1,14 @@
 ---
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: local
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-toml
+      - id: detect-private-key
+  - repo: local
     hooks:
       - id: validate_answer_file
         name: validate proxmox answer.toml
@@ -14,13 +16,14 @@ repos:
         entry: podman-compose run --rm --entrypoint /bin/bash pve -c 'proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml'
         files: ^answer\.toml$
         pass_filenames: false
--   repo: https://github.com/shellcheck-py/shellcheck-py
+  - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1-1
     hooks:
-      -   id: shellcheck
-# Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt format.
-# A simple grep-based hook to pass pre-commit when the literal string '$6$' is absent.
--   repo: local
+      - id: shellcheck
+
+  # Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt format.
+  # A simple grep-based hook to pass pre-commit when the literal string '$6$' is absent.
+  - repo: local
     hooks:
       - id: mkpasswd_yescrypt_replaces_sha512
         name: reject SHA512 password hashes
