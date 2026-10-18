@@ -49,13 +49,3 @@ This also runs as a [pre-commit](https://pre-commit.com) hook!
   podman-compose run --entrypoint /bin/bash \
     pve -c "proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml"
 ```
-
-## My actual Dell Opitplex hardware:
-
-| disk | ID_SERIAL_SHORT | full ID |
-|------|-----------------|---------|
-|nvme0n1|0036580001504|nvme-NE-512_2280_0036580001504|
-|sda|9VP43HG6|ata-ST31000528AS_9VP43HG6|
-|sdb|6YD1NE4T|ata-ST2000DL003-9VT166_6YD1NE4T|
-|sdc|6VPDB7XZ|ata-ST31000524AS_6VPDB7XZ|
-|sdd|Z3MCS0QUS|ata-TOSHIBA_MQ01ABF050_Z3MCS0QUS|
