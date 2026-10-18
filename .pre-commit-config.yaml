@@ -22,7 +22,7 @@ repos:
       - id: shellcheck
 
   # Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt format.
-  # A simple grep-based hook to pass pre-commit when the literal string '$6$' is absent.
+  # A simple grep-based hook to pass pre-commit when the literal string '$6$' is present.
   - repo: local
     hooks:
       - id: mkpasswd_yescrypt_replaces_sha512
