@@ -7,9 +7,10 @@ fqdn = "optiplex.internal"
 mailto = "bbishop@fastmail.com"
 timezone = "America/Chicago"
 root-ssh-keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILi1okhO4blKf8zlxJORtFop64FZXtfD9ja3GHqsWObY Bryan Bishop Nov 2025 laptop - darkstar"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILi1okhO4blKf8zlxJORtFop64FZXtfD9ja3GHqsWObY"
 ]
-root-password-hashed = "$6$fZFpy8hKVPzDdd5x$fe2j6RoyMrSUpW9tQlXtYSLVJrrKTDDpGJAl2ASdxVFU3nOHcg1txh8EKOcWDIaqdYvRBnXRmT1g2aAqafyaL."
+# $y means yescrypt, which replaced sha512 in 2021.  use mkpasswd to generate this
+root-password-hashed = "$y$j9T$rnPFcwFaC7U9Z7x2UPRrg0$Hix.3foZ6p3BaLLDX3LECDmq8Dzvj9MLXf5ycDR7mQ1"
 
 [network]
 source = "from-answer"

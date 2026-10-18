@@ -18,3 +18,12 @@ repos:
     rev: v0.11.0.1-1
     hooks:
       -   id: shellcheck
+# Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt formta.
+# A simple grep-based hook to pass when the string '$6$' is absent. This could have a false positive on something unrelated
+-   repo: local
+    hooks:
+      - id: mkpasswd_yescrypt_replaces_sha512
+        name: reject SHA512 password hashes
+        language: system
+        entry: bash -c 'grep -nHF "$1" "${@:2}"; result=$?; test "$result" -eq 1' -- '$6$'
+        exclude: ^\.pre-commit-config\.yaml$
