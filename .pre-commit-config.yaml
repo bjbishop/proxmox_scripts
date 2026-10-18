@@ -18,12 +18,19 @@ repos:
     rev: v0.11.0.1-1
     hooks:
       -   id: shellcheck
-# Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt formta.
-# A simple grep-based hook to pass when the string '$6$' is absent. This could have a false positive on something unrelated
+# Try to detect password hashes in the older, less secure sha512 format, and prefer the yescrypt format.
+# A simple grep-based hook to pass pre-commit when the literal string '$6$' is absent.
 -   repo: local
     hooks:
       - id: mkpasswd_yescrypt_replaces_sha512
         name: reject SHA512 password hashes
         language: system
+        # Detangling copilots code here that assisted with this check:
+        # `grep -nHF "$1" "${@:2}"` searches the files for the literal string passed into the inline script as `$1`.
+        # `-n` includes line numbers, `-H` includes filenames, and `-F` treats the search term as plain text. `"$1"` is the first filename argument passed in;
+        # `"${@:2}"` means all arguments starting with the second, which are the filenames.
+        # `result=$?` saves `grep`’s exit code: `0` means it found a match, `1` means no match, and a larger value means an error.
+        # `test "$result" -eq 1` succeeds only when `grep` found no match.
+        # Since that’s the last command, its result becomes the script’s exit code—and pre-commit’s pass/fail signal.
         entry: bash -c 'grep -nHF "$1" "${@:2}"; result=$?; test "$result" -eq 1' -- '$6$'
         exclude: ^\.pre-commit-config\.yaml$
