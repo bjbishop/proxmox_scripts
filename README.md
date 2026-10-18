@@ -9,7 +9,7 @@ sudo proxmox-auto-install-assistant prepare-iso --fetch-from iso --answer-file $
 
 ## From a non-debian machine:
 
-Using podman here through docker-compose.yml, it bind mounts the current repo directory as /tmp/proxmox and the $HOME/Downloads directory as /tmp/downloads.  Then it takes 2 parameters: `answer.toml` and `proxmox.iso` from their path within th container.
+Using podman here through podman-compose.yml, it bind mounts the current repo directory as /tmp/proxmox and the $HOME/Downloads directory as /tmp/downloads.  Then it takes 2 parameters: `answer.toml` and `proxmox.iso` from their path within th container.
 
 ```sh
   podman-compose run --build pve <path_inside_container_to_answer.toml> <path_inside_container_to_proxmox_installer_image.iso>
@@ -28,7 +28,7 @@ If permission denied errors are shown producing the final auto-from-iso.iso, the
  podman-compose run --build --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso /tmp/downloads/proxmox-ve_9.2-1-auto-from-iso.iso"
 ```
 
-See the docker-compose.yml for bind mount locations.
+See the podman-compose.yml for bind mount locations.
 
 ## Validating the answer file format:
 
