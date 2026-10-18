@@ -1,5 +1,7 @@
 # Creating a new Proxmox auto installer ISO image file
 
+See [automated installation instructions](https://pve.proxmox.com/wiki/Automated_Installation) for more details.
+
 ## From another proxmox machine:
 
 ```sh
@@ -40,6 +42,8 @@ If permission denied errors are shown producing the final auto-from-iso.iso, the
 See the podman-compose.yml for bind mount locations.
 
 ## Validating the answer file format:
+
+This also runs as a [pre-commit](https://pre-commit.com) hook!
 
 ```sh
   podman-compose run --entrypoint /bin/bash \
