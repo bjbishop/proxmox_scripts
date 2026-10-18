@@ -9,7 +9,7 @@ sudo proxmox-auto-install-assistant prepare-iso --fetch-from iso --answer-file $
 
 ## From a non-debian machine:
 
-Using podman here through podman-compose.yml, it bind mounts the current repo directory as /tmp/proxmox and the $HOME/Downloads directory as /tmp/downloads.  Then it takes 2 parameters: `answer.toml` and `proxmox.iso` from their path within th container.
+Using podman here through podman-compose.yml, it bind mounts the current repo directory as /tmp/proxmox and the $HOME/Downloads directory as /tmp/downloads.  Then it takes 2 parameters: `answer.toml` and `proxmox.iso` from their path within the container.
 
 ```sh
   podman-compose run --build pve <path_inside_container_to_answer.toml> <path_inside_container_to_proxmox_installer_image.iso>
