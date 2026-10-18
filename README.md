@@ -1,50 +1,47 @@
-# Creating a new ISO image
+# Creating a new Proxmox auto installer ISO image file
 
-## From another debian/ubuntu/proxmox machine:
+## From another proxmox machine:
 
-```
+```sh
 sudo apt -y install xorriso proxmox-auto-install-assistant
-sudo proxmox-auto-install-assistant prepare-iso --fetch-from iso --answer-file $(pwd)/answer.toml --on-first-boot $(pwd)/first-boot.sh <path_to_installer_file.iso>
+sudo proxmox-auto-install-assistant prepare-iso --fetch-from iso --answer-file $(pwd)/answer.toml --on-first-boot $(pwd)/first-boot.sh <local_path_to_proxmox_installer_image.iso>
 ```
 
 ## From a non-debian machine:
 
-```
-  podman-compose run --build pve <path_to_answer.toml_within_bind_mount_dir_in_container> <path_to_installer_file.iso_within_bind_mount_dir_in_container>
+Using podman here through docker-compose.yml, it bind mounts the current repo directory as /tmp/proxmox and the $HOME/Downloads directory as /tmp/downloads.  Then it takes 2 parameters: `answer.toml` and `proxmox.iso` from their path within th container.
+
+```sh
+  podman-compose run --build pve <path_inside_container_to_answer.toml> <path_inside_container_to_proxmox_installer_image.iso>
 ```
 
 For example:
-```
+```sh
   podman-compose run --build pve /tmp/proxmox/answer.toml /tmp/downloads/proxmox-ve_9.2-1.iso
 ```
 
-If you see permission denied errors on producing the final auto.iso, then there is a prexisting auto.iso file in the way, remove it.
+If permission denied errors are shown producing the final auto-from-iso.iso, then there might be errors writing to the file that this container produces, or qemu or a VM might have it open.  It generates a file like: `proxmox-ve_9.2-1-auto-from-iso.iso`
 
 ## Verifying the custom ISO by extracting out the answer.toml:
 
-```
-  podman-compose run --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso <path_to_custom_iso_within_bind_mount_dir_in_container>"
-```
-
-For example:
-```
- podman-compose run --build --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso /tmp/downloads/proxmox-ve_9.2-1.iso"
+```sh
+ podman-compose run --build --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant inspect-iso /tmp/downloads/proxmox-ve_9.2-1-auto-from-iso.iso"
 ```
 
 See the docker-compose.yml for bind mount locations.
 
-## Validating the answer file:
+## Validating the answer file format:
 
-```
+```sh
   podman-compose run --entrypoint /bin/bash pve -c "proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml"
 ```
 
 ## My actual Dell Opitplex hardware:
 
-These are the ID_SERIAL_SHORT values:
-
-- nvme0n1 0036580001504 by-id "nvme-NE-512_2280_0036580001504"
-- sda 9VP43HG6 by-id "ata-ST31000528AS_9VP43HG6"
-- sdb 6YD1NE4T by-id "ata-ST2000DL003-9VT166_6YD1NE4T"
-- sdc 6VPDB7XZ by-id "ata-ST31000524AS_6VPDB7XZ"
-- sdd Z3MCS0QUS by-id "ata-TOSHIBA_MQ01ABF050_Z3MCS0QUS"
+| disk | ID_SERIAL_SHORT | full ID |
+|------|-----------------|---------|
+|nvme0n1|0036580001504|nvme-NE-512_2280_0036580001504|
+|sda|9VP43HG6|ata-ST31000528AS_9VP43HG6|
+|sdb|6YD1NE4T|ata-ST2000DL003-9VT166_6YD1NE4T|
+|sdc|6VPDB7XZ|ata-ST31000524AS_6VPDB7XZ|
+|sdd|Z3MCS0QUS|ata-TOSHIBA_MQ01ABF050_Z3MCS0QUS|
