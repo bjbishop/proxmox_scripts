@@ -13,7 +13,7 @@ repos:
       - id: validate_answer_file
         name: validate proxmox answer.toml
         language: system
-        entry: podman-compose run --rm --entrypoint /bin/bash pve -c 'proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml'
+        entry: podman-compose run --rm -T --entrypoint /bin/bash pve -c 'proxmox-auto-install-assistant validate-answer /tmp/proxmox/answer.toml'
         files: ^answer\.toml$
         pass_filenames: false
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -21,6 +21,6 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/bjbishop/mkpasswd_hash_check
-    rev: 0dd333d339c189c9d266287937d62604cb50d6db
+    rev: v1.0.0
     hooks:
-      - id: mkpasswd_yescrypt_replaces_sha512
+      - id: reject_legacy_mkpasswd_hashes
