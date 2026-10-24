@@ -15,19 +15,22 @@ root-password-hashed = "$y$j9T$rnPFcwFaC7U9Z7x2UPRrg0$Hix.3foZ6p3BaLLDX3LECDmq8D
 [network]
 source = "from-answer"
 cidr = "192.168.0.10/24"
-dns = "8.8.8.8"
 gateway = "192.168.0.1"
+dns = "8.8.8.8"
+# no colons or spaces, the real entry is prefixed with the string 'enx' for some reason, use a wildcard to partially match
+filter.ID_NET_NAME_MAC ="*9e3a62"
+
 
 # This is just to format the main system volume for where proxmox is going to live, not the other attached disks.
 [disk-setup]
 filesystem = "ext4"
 lvm.swapsize = 12
 # for real hardware
-filter.ID_SERIAL_SHORT = "0036580001504" # this is the nvme0 drive
+filter.ID_SERIAL_SHORT = "0036580001504" # this is the nvme0n1 drive
 # or for qemu disks
 # filter.ID_PATH = "pci-0000_04_00_0" # this is just the ID found in qemu
 # or just
-# disk-list = ["/dev/vda"]
+# disk-list = ["/dev/nvme0n1"]
 
 # runs the first-boot.sh script in this repo
 [first-boot]
